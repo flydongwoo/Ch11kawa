@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+///s
 char* compareNum(int a, int b);
 
 int main(void)
