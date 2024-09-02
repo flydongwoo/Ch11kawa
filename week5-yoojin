@@ -1,0 +1,22 @@
+#include <stdio.h>
+#define max(x, y) (x > y ? x : y)
+
+int main(void) {
+    int dice1 = 0, dice2 = 0, dice3 = 0, prize = 0;
+    scanf("%d %d %d", &dice1, &dice2, &dice3);
+
+    int diceMax = max(max(dice1, dice2), max(dice2, dice3));
+
+    if (dice1 == dice2) {
+        if (dice1 == dice3) 
+            prize = 10000 + dice1 * 1000;
+        else prize = 1000 + dice1 * 100;
+    } else {
+        if (dice1 == dice3 || dice2 == dice3) 
+            prize = 1000 + dice3 * 100;
+        else prize = diceMax * 100;
+    }
+
+    printf("%d", prize);
+    return 0;
+}
