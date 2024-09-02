@@ -1,1 +1,27 @@
+#include <stdio.h>
 
+char* compareNum(int a, int b);
+
+int main(void)
+{
+	int num1, num2;
+	scanf("%d%d", &num1, &num2);
+	char* result = compareNum(num1, num2);
+	printf("%s",result);
+	return 0;
+}
+char* compareNum(int a, int b)
+{
+	if (a > b)
+	{
+		return ">";
+	}
+	else if (a < b)
+	{
+		return "<";
+	}
+	else
+	{
+		return "==";
+	}
+}
