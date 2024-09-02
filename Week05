@@ -1,7 +1,7 @@
 #include <stdio.h>
 #pragma warning(disable:4996)
 
-// 두 수 비교하기
+// 두 수 비교하기 문제
 
 int main(void) {
 	int A, B;
