@@ -1,0 +1,130 @@
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+// 두 수 비교하기
+
+int main(void) {
+	int A, B;
+
+	scanf("%d", &A);
+	scanf("%d", &B);
+
+
+	if (A > B) {
+		printf("> \n");
+
+	}
+	else if (A < B) {
+		printf("< \n");
+	}
+	else {
+		printf("== \n");
+	}
+
+	return 0;
+}
+
+
+
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+// 알람 시계
+
+int main(void) {
+	int H, M;
+
+	scanf("%d", &H);
+	scanf("%d", &M);
+
+	if (M < 45) {
+
+		M = M + 60 - 45;
+
+		if (H == 0) {
+			H = 23;
+		}
+		else {
+			H -= 1;
+		}
+
+	}
+	else {
+		M = M - 45;
+	}
+
+	printf("%d %d\n", H, M);
+
+	return 0;
+}
+
+
+
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+// 오븐 시계
+
+int main(void) {
+	int A, B, C;
+
+	scanf("%d", &A, &B);
+	scanf("%d", &C);
+
+	B += C;
+
+	(A += B) / 60;
+	B %= 60;
+
+	if (A >= 24) {
+		A %= 24;
+	}
+
+	printf("%d", A);
+	printf("%d", B);
+
+	return 0;
+}
+
+
+
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+// 주사위 세개
+
+int main(void) {
+	int a, b, c;
+
+	scanf("%d", &a);
+	scanf("%d", &b);
+	scanf("%d", &c);
+
+	int prizemoney;
+
+	if (a == b && a == c) {
+		prizemoney = 10000 + a * 1000;
+	}
+	else if (a == b || a == c) {
+		prizemoney = 1000 + a * 100;
+	}
+	else if (b == c) {
+		prizemoney = 1000 + b * 100;
+	}
+	else {
+		int max = a;
+
+		if (b > max) {
+			max = b;
+		}
+		if (c > max) {
+			max = c;
+		}
+
+		prizemoney = max * 100;
+	}
+
+	printf("%d\n", prizemoney);
+
+	return 0;
+}
