@@ -78,4 +78,17 @@ int main(void) {
     printf("\n");
     return 0;
 }
+
+// ----------------------------------------------
+
+// 특수문자 출력하기
+
+#include <stdio.h>
+
+int main(void) {
+    printf("!@#$%%^&*(\\'\"<>?:;");
+    return 0;
+}
+
+
     
