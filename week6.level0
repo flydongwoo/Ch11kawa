@@ -38,3 +38,36 @@ int main(void) {
     return 0;
 }
 -----------------------------------------
+//대소문자 바꿔서 출력하기
+#include <stdio.h>
+#define LEN_INPUT 21
+
+int main(void) {
+    char s1[LEN_INPUT];
+    int i = 0;
+    scanf("%s", s1);
+    while (s1[i] != '\0')
+    {
+        if (isupper(s1[i]))
+        {
+            s1[i] = tolower(s1[i]);  
+        }
+        else
+        {
+            s1[i] = toupper(s1[i]);
+        }
+        i++;
+    }
+    puts(s1);
+    return 0;
+}
+
+-----------------------------------------
+//특수문자 출력하기
+#include <stdio.h>
+
+int main(void) {
+    printf("!@#$%^&*(\\\'\"<>?:;");
+    return 0;
+}
+
