@@ -1,7 +1,7 @@
 # 💫 CH11KAWA STUDY  💫
 <br>
 
-![C Programming](https://img.shields.io/badge/C-Programming-blue)  
+![C Programming](https://img.shields.io/badge/C-Programming-green)  
 <br>
 매주 **C 언어**를 공부하고, 함께 성장해 나가는 스터디 그룹입니다!  
 
