@@ -90,4 +90,42 @@ int main(void) {
     return 0;
 }
 
-// 잠시 이것만 수정해서 제 폴더에 머지해볼게유...
+// ----------------------------------------------
+
+// 가장 많이 받은 선물
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(const char* friends[], size_t friends_len, const char* gifts[], size_t gifts_len);
+
+int main(void) {
+    char friends[50];
+    int i = 0;
+    while (i < 50) {
+        scanf("%s", friends + i);
+        i++;
+    }
+    solution(friends, );
+    return 0;
+}
+int solution(const char* friends[], size_t friends_len, const char* gifts[], size_t gifts_len) 
+{
+    int answer = 0; // answer : 다음 달에 가장 많은 선물을 받는 친구가 받을 선물의 수
+    /*
+    if (선물 주고받은 기록 O) {
+    이번 달에 더 많은 선물일 준 사람 : get 다음달에 선물을 하나 더 받음
+    }
+    else if (기록이 하나도 없거나 || 주고받은 수가 같다면) {
+        선물 지수 = (이번 달까지 자신이 친구들에게 준 선물의 수) - (받은 선물의 수)
+        선물 지수가 큰사람 : get 선물 하나 from 선물 지수가 작은사람
+        if (선물 지수도 같다면) {
+            다음 달에 선물을 주고받지 않는다
+        }
+    }
+    */
+    return answer;
+}
+// 대충 이렇게 풀면 되지 않을까 했는데 일단 입력 처리부터 어떻게 해야할지 모르겠네요..
+
