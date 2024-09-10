@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    int b;
+    scanf("%d %d", &a, &b);
+    printf("%d + %d = %d", a, b, a + b);
+    return 0;
+}
+---------------
+#include <stdio.h>
+#define LEN_INPUT1 11
+#define LEN_INPUT2 11
+
+int main(void) {
+    char s1[LEN_INPUT1];
+    char s2[LEN_INPUT2];
+    scanf("%s%s", s1, s2);
+    printf("%s%s",s1,s2);
+    return 0;
+}
+-----------------
+#include <stdio.h>
+#include <string.h> // strlen() 함수를 쓰기위해 불러왔습니다!
+#define LEN_INPUT 11
+
+int main(void) {
+    char s1[LEN_INPUT];
+    scanf("%s", s1);
+    for (int i=0;i<strlen(s1);i++)
+    {
+        printf("%c\n",s1[i]);
+    }
+    return 0;
+}
+-----------------
+
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    scanf("%d", &a);
+    if (a%2==0)
+    {
+        printf("%d is even",a);
+    }
+    else
+    {
+        printf("%d is odd",a);
+    }
+    return 0;
+}
