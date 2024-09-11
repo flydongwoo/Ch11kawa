@@ -70,3 +70,62 @@ int main(void) {
 }
 
 //----------------------------------------------
+// programmers prob5
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// a와 b를 문자열로 바꾸기
+// 문자열 index 차례로 비교하기
+// 가장 먼저 큰 수가 나오면, 해당 수를 앞에 해서 문자열 붙이기
+
+int solution(int a, int b) {
+    char A[6], B[6];
+    char result[12];
+
+    sprintf(A, "%d", a);
+    sprintf(B, "%d", b);
+
+    int i = 0;
+    while (i < 5) {
+        if (A[i] > B[i]) {
+            strcpy(result, "A");
+            break;
+        }
+        else if (B[i] > A[i]) {
+            strcpy(result, "B");
+            break;
+        }
+        else {
+            i++;
+            strcpy(result, "A");
+        }
+    }
+    // -> 9 91을 입력했을 때 919가 출력되는 문제가 해결이 안되어서 찾아봤더니,
+
+    // int compare = strcmp(strcat(strdup(A), B), strcat(strdup(B), A));
+    // 이 방식.......으로 하면 해결되던데 ........ 넘 어렵네요
+
+    if (strcmp(result, "A") == 0)
+        strcpy(result, strcat(A, B));
+    else if (strcmp(result, "B") == 0)
+        strcpy(result, strcat(B, A));
+
+
+    int answer = atoi(result);
+    return answer;
+}
+
+
+int main(void) {
+    int a = 0, b = 0;
+    scanf("%d %d", &a, &b);
+
+    printf("%d\n", solution(a, b));
+
+    return 0;
+}
+
+//------------------------------------------------------------------------
