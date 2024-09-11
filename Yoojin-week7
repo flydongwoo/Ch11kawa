@@ -29,3 +29,28 @@ int main(void) {
 }
 
 //-----------------------------------------------
+// programmers prob3
+
+#define _CRT_SECURE_NO_WARNINGS
+#define LEN_INPUT 11
+#include <stdio.h>
+#include <string.h>
+
+void printAry(char* str, int size);
+
+int main(void) {
+	char s1[LEN_INPUT];
+	scanf("%s", s1);
+	int size = strlen(s1);
+
+	printAry(s1, size);
+
+	return 0;
+}
+
+void printAry(char* str, int size) {
+	for (int i = 0; i < size; i++)
+		printf("%c\n", str[i]);
+}
+
+//----------------------------------------------
