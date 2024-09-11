@@ -60,8 +60,8 @@ int main(void) {
 
 
 char* solution(char a1[10], char b1[10]) {
-    static char a2[20];
-    static char b2[20];
+    char a2[20];
+    char b2[20];
     strcpy(a2, a1);
     strcpy(b2, b1);
     strcat(a2, b1);
