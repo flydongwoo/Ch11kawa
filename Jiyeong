@@ -50,3 +50,30 @@ int main(void) {
     }
     return 0;
 }
+
+-----------------
+// 이건........ 프로그래머스에선 통과가 되지않았지만 출력은 제대로 나오는... 예외경우를 찾아야해요 ㅜㅜ
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+char* solution(char a1[10], char b1[10]) {
+    static char a2[20];
+    static char b2[20];
+    strcpy(a2, a1);
+    strcpy(b2, b1);
+    strcat(a2, b1);
+    strcat(b2, a1);
+    int a = atoi(a2);
+    int b = atoi(b2);
+    return (a < b) ? b : a;
+}
+int main(void)
+{
+    char a[10], b[10];
+    scanf("%s %s", a, b);
+    printf("%d", solution(a, b));
+    return 0;
+}
