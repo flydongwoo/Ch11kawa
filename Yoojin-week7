@@ -232,3 +232,68 @@ void get_lcm_gcd(int x, int y, int* p_lcm, int* p_gcd) {
 	*p_gcd = numS;
 	*p_lcm = (x * y) / *p_gcd;
 }
+
+
+//---------------------------------------------------------------
+
+// C언어 express prob4
+
+// 주사위 : 각 면이 나온 횟수 출력하는 프로그램
+// 난수를 이용하여 주사위 면 생성
+// 주사위를 던지는 함수 get_dice_face()
+// 함수 안에서 각 면이 나올 때마다 그 횟수를 정적 지역 변수를 이용하여 기억
+// get_dice_face() 호출 횟수가 100이되면 각 면의 횟수를 출력
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+void get_dice_face();
+
+int main(void) {
+	for (int i = 0; i < 100; i++) {
+		get_dice_face();
+	}
+	return 0;
+}
+
+void get_dice_face() {
+	static int dice_1;
+	static int dice_2;
+	static int dice_3;
+	static int dice_4;
+	static int dice_5;
+	static int dice_6;
+	static int count;
+
+	int dice_face = rand() % 6;
+
+	switch (dice_face) {
+	case 0:
+		dice_1++; count++;
+		break;
+	case 1:
+		dice_2++; count++;
+		break;
+	case 2:
+		dice_3++; count++;
+		break;
+	case 3:
+		dice_4++; count++;
+		break;
+	case 4:
+		dice_5++; count++;
+		break;
+	case 5:
+		dice_6++; count++;
+		break;
+	}
+	if (count == 100) {
+		printf("1->%d\n", dice_1);
+		printf("2->%d\n", dice_2);
+		printf("3->%d\n", dice_3);
+		printf("4->%d\n", dice_4);
+		printf("5->%d\n", dice_5);
+		printf("6->%d\n", dice_6);
+	}
+}
