@@ -189,3 +189,46 @@ void convert(double* grades, double* scores, int size) {
 }
 
 //----------------------------------------------------------------------------------------------
+
+// C언어 express prob3
+
+// 2개의 정수 입력
+// 최대 공약수 & 최소 공배수를 반환하는 함수
+// 최대 공약수 : 유클리드 방법 사용
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void get_lcm_gcd(int x, int y, int* p_lcm, int* p_gcd);
+
+int main(void) {
+	int x, y, lcm, gcd;
+
+	scanf("%d %d", &x, &y);
+	
+	get_lcm_gcd(x, y, &lcm, &gcd);
+	printf("lcm : %d\n", lcm);
+	printf("gcd: %d\n", gcd);
+
+	return 0;
+}
+
+void get_lcm_gcd(int x, int y, int* p_lcm, int* p_gcd) {
+	int numL, numS, temp;
+	
+	if (x > y) {
+		numL = x; numS = y;
+	} else {
+		numL = y; numS = x;
+	}
+
+	while (1) {
+		if (numL % numS == 0) break;
+		temp = numL;
+		numL = numS;
+		numS = temp % numS;
+	}
+
+	*p_gcd = numS;
+	*p_lcm = (x * y) / *p_gcd;
+}
