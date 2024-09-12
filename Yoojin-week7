@@ -157,3 +157,35 @@ void get_sum_diff(int x, int y, int* p_sum, int* p_diff) {
 }
 
 //-----------------------------------------------------------------
+
+// C언어 express prob2
+
+// 학생들의 평점은 4.3점이 만점
+// 배열 grades[]에 학생 10명의 학점이 저장되어 있음
+// 이것을 100점으로 변환하여 배열 scores[]에 저장하는 함수를 작성
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void convert(double* grades, double* scores, int size);
+
+int main(void) {
+	double grades[10] = { 00.00,00.50,01.00,01.50,02.00,02.50,03.00,03.50,04.00,04.30 };
+	double scores[10] = { 0 };
+	int size = 10;
+
+	convert(grades, scores, size);
+	
+	for (int i = 0; i < size; i++) {
+		printf("%.2f ", scores[i]);
+	}
+	return 0;
+}
+
+void convert(double* grades, double* scores, int size) {
+	for (int i = 0; i < size; i++) {
+		scores[i] = grades[i] / 4.3 * 100;
+	}
+}
+
+//----------------------------------------------------------------------------------------------
