@@ -87,7 +87,7 @@ int main(void)
 #include <string.h>
 
 
-char* solution(int a, int b) 
+int solution(int a, int b) 
 {
     char a1[10];
     char b1[10];
@@ -99,7 +99,7 @@ char* solution(int a, int b)
     strcpy(b2, b1);
     strcat(a2, b1);
     strcat(b2, a1);
-    int a3 = atoi(a2);
-    int b3 = atoi(b2);
-    return (a3 < b3) ? b3 : a3;
+    a = atoi(a2);
+    b = atoi(b2);
+    return (a < b) ? b : a;
 }
