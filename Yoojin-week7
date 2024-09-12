@@ -129,3 +129,31 @@ int main(void) {
 }
 
 //------------------------------------------------------------------------
+//-----------------------------------------------------------------------
+
+// C언어 express prob1
+
+// 2개의 정수의 합과 차를 동시에 반환하는 함수를 작성하고 테스트
+// 포인터 매개 변수 사용
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void get_sum_diff(int x, int y, int* p_sum, int* p_diff);
+
+int main(void) {
+	int x, y, sum, diff;
+
+	scanf("%d %d", &x, &y);
+	get_sum_diff(x, y, &sum, &diff);
+
+	printf("sum = %d\n", sum);
+	printf("diff = %d\n", diff);
+	return 0;
+}
+void get_sum_diff(int x, int y, int* p_sum, int* p_diff) {
+	*p_sum = x + y;
+	*p_diff = x - y;
+}
+
+//-----------------------------------------------------------------
