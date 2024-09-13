@@ -93,3 +93,46 @@ void get_lcm_gcd(int x, int y, int* p_lcm, int* p_gcd)
 --------
 4번 문제
 --------
+#include <stdio.h>
+#include <stdlib.h> 
+#include <time.h>
+
+void get_dice_face(int* amount1, int* amount2, int* amount3, int* amount4, int* amount5, int* amount6);
+
+int main(void)
+{
+	int amount1 = 0, amount2 = 0, amount3 = 0, amount4 = 0, amount5 = 0, amount6 = 0;
+	
+	srand(time(0));
+
+	for (int i = 0; i < 100; i++) {
+		get_dice_face(&amount1, &amount2, &amount3, &amount4, &amount5, &amount6);
+	}
+
+	printf("1 -> %d\n", amount1);
+	printf("2 -> %d\n", amount2);
+	printf("3 -> %d\n", amount3);
+	printf("4 -> %d\n", amount4);
+	printf("5 -> %d\n", amount5);
+	printf("6 -> %d\n", amount6);
+
+	return 0;
+}
+
+
+void get_dice_face(int* amount1, int* amount2, int* amount3, int* amount4, int* amount5, int* amount6)
+{
+	int num = (rand() % 6) + 1;
+	if (num % 2 == 0) {
+		if (num == 2) { (*amount2)++; }
+		else if (num == 4) { (*amount4)++; }
+		else { (*amount6)++; }
+	}
+	else {
+		if (num == 1) { (*amount1)++; }
+		else if (num == 3) { (*amount3)++; }
+		else { (*amount5)++; }
+	}
+}
+
+ㄴ> 한번 짝수를 기준으로 반으로 나눠서 값을 확인하는 코드로 짜봤습니다!
