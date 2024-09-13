@@ -1,0 +1,220 @@
+이번 주는 늦게 PR을 올려서 죄송합니다! 다음 주는 빨리 해볼 수 있도록 하겠습니다! ㅜ0ㅜ
+
+// 덧셈식 출력하기
+
+#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+int main(void) {
+    int a;
+    int b;
+    scanf("%d %d", &a, &b);
+
+    int c = a + b;
+
+    printf("%d + %d = %d", a, b, c);
+    return 0;
+}
+
+
+----------------------------------------------------------------------------------------------
+
+// 문자열 붙여서 출력하기
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#define LEN_INPUT1 11
+#define LEN_INPUT2 11
+
+int main(void) {
+    char s1[LEN_INPUT1];
+    char s2[LEN_INPUT2];
+    scanf("%s %s", s1, s2);
+
+    printf("%s%s", s1, s2);
+
+    return 0;
+}
+
+
+----------------------------------------------------------------------------------------------
+
+// 문자열 돌리기
+
+#include <stdio.h>
+#define LEN_INPUT 11
+
+int main(void) {
+    char s1[LEN_INPUT];
+    scanf("%s", s1);
+
+    int str = strlen(s1);
+
+    for (int i = 0; i < str; i++) {
+        printf("%c\n", s1[i]);
+    }
+
+    return 0;
+}
+
+
+
+----------------------------------------------------------------------------------------------
+
+// 홀짝 구분하기
+
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    scanf("%d", &a);
+
+    if (a % 2 == 0) {
+        printf("%d is even", a);
+    }
+    else {
+        printf("%d is odd", a);
+    }
+
+    return 0;
+}
+
+
+----------------------------------------------------------------------------------------------
+
+// C_express_prob01
+
+#include <stdio.h>
+
+void get_sum_diff(int x, int y, int* p_sum, int* p_diff) {
+	*p_sum = x + y;
+	*p_diff = x - y;
+}
+
+int main(void) {
+	int a;
+	int b;
+	int sum;
+	int diff;
+
+	printf("정수를 두 개 입력해주세요 : ");
+	scanf("%d %d", &a, &b);
+
+	get_sum_diff(a, b, & sum, & diff);
+
+	printf("원소들의 합 = %d \n", sum);
+	printf("원소들의 차 = %d \n", diff);
+
+	return 0;
+
+}
+
+
+----------------------------------------------------------------------------------------------
+
+// C_express_prob01
+
+
+#include <stdio.h>
+
+void convert(double* grades, double* scores, int size) {
+	int i;
+	for (i = 0; i < size; i++) {
+		scores[i] = (grades[i] / 4.3) * 100;
+	}
+}
+
+int main(void) {
+	double grades[10];
+	double scores[10];
+	int size = 10;
+
+	for (int i = 0; i < size; i++) {
+		scanf("%lf", &grades[i]);
+	}
+
+	convert(grades, scores, size);
+
+	for (int i = 0; i < size; i++) {
+		printf("%.2f ", scores[i]);
+	}
+
+	return 0;
+}
+
+
+----------------------------------------------------------------------------------------------
+
+// C_express_prob03
+
+#include <stdio.h>
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+void get_lcm_gcd(int x, int y, int* p_lcm, int* p_gcd) {
+    *p_gcd = gcd(x, y);
+    *p_lcm = (x * y) / (*p_gcd);
+}
+
+int main(void) {
+    int a;
+    int b;
+    int lcm;
+    int gcd;
+
+    printf("두개의 정수를 입력하시오: ");
+    scanf("%d %d", &a, &b);
+
+    get_lcm_gcd(a, b, &lcm, &gcd);
+
+    printf("최소공배수는 %d입니다. \n", lcm);
+    printf("최대공약수는 %d입니다. \n", gcd);
+
+	return 0;
+}
+
+
+----------------------------------------------------------------------------------------------
+
+//C_express_prob04
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int get_dice_face() {
+	static int counts[6] = { 0 };
+
+	int dice_face = rand() % 6 + 1;
+	counts[dice_face - 1]++;
+
+	static int count = 0;
+	count++;
+
+	if (count == 100) {
+		for (int i = 1; i <= 6; i++) {
+			printf("%d -> %d \n", i, counts[i]);
+		}
+	}
+}
+
+int main(void) {
+
+	srand(time(NULL));
+
+	for (int i = 0; i < 100; i++) {
+		get_dice_face();
+	}
+
+	return 0;
+}
+
+
+이상입니다~!
