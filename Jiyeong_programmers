@@ -1,0 +1,105 @@
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    int b;
+    scanf("%d %d", &a, &b);
+    printf("%d + %d = %d", a, b, a + b);
+    return 0;
+}
+---------------
+#include <stdio.h>
+#define LEN_INPUT1 11
+#define LEN_INPUT2 11
+
+int main(void) {
+    char s1[LEN_INPUT1];
+    char s2[LEN_INPUT2];
+    scanf("%s%s", s1, s2);
+    printf("%s%s",s1,s2);
+    return 0;
+}
+-----------------
+#include <stdio.h>
+#include <string.h> // strlen() 함수를 쓰기위해 불러왔습니다!
+#define LEN_INPUT 11
+
+int main(void) {
+    char s1[LEN_INPUT];
+    scanf("%s", s1);
+    for (int i=0;i<strlen(s1);i++)
+    {
+        printf("%c\n",s1[i]);
+    }
+    return 0;
+}
+-----------------
+
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    scanf("%d", &a);
+    if (a%2==0)
+    {
+        printf("%d is even",a);
+    }
+    else
+    {
+        printf("%d is odd",a);
+    }
+    return 0;
+}
+
+-----------------
+//이건........ 프로그래머스에선 통과가 되지않았지만 출력은 제대로 나오는... 예외경우를 찾아야해요 ㅜㅜ
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+char* solution(char a1[10], char b1[10]) {
+    char a2[20];
+    char b2[20];
+    strcpy(a2, a1);
+    strcpy(b2, b1);
+    strcat(a2, b1);
+    strcat(b2, a1);
+    int a = atoi(a2);
+    int b = atoi(b2);
+    return (a < b) ? b : a;
+}
+int main(void)
+{
+    char a[10], b[10];
+    scanf("%s %s", a, b);
+    printf("%d", solution(a, b));
+    return 0;
+}
+----------
+예외경우가 문제가 아니였습니다. 전 solution 함수에서 a1 b1을 문자열로 받았는데 문제 조건에서는 정수로 입력받는 함수를 만들어야하는...
+심지어 main을 써서 작동시키는게 아니라 그냥 함수까지만 만들면 되는.... 그래서 다시 만들어보았습니다
+----------
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int solution(int a, int b) 
+{
+    char a1[10];
+    char b1[10];
+    sprintf(a1,"%d",a);
+    sprintf(b1,"%d",b);
+    char a2[20];
+    char b2[20];
+    strcpy(a2, a1);
+    strcpy(b2, b1);
+    strcat(a2, b1);
+    strcat(b2, a1);
+    a = atoi(a2);
+    b = atoi(b2);
+    return (a < b) ? b : a;
+}
