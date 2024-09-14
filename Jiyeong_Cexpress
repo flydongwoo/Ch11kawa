@@ -1,0 +1,138 @@
+1번 문제
+---------
+#include <stdio.h>
+
+void get_sum_diff(int x, int y, int* p_sum, int* p_diff);
+
+int main(void)
+{
+	int sum = 0;
+	int diff = 0;
+	get_sum_diff(3, 4, &sum, &diff);
+	printf("원소들의 합 = %d\n", sum);
+	printf("원소들의 차 = %d\n", diff);
+	return 0;
+}
+
+void get_sum_diff(int x, int y, int* p_sum, int* p_diff)
+{
+	*p_sum = x + y;
+	*p_diff = x - y;
+
+}
+--------
+2번 문제
+--------
+
+#include <stdio.h>
+
+void convert(double *grades, double *scores, int size);
+
+int main(void)
+{
+	double grades[10] = { 0,0.5,1,1.5,2,2.5,3,3.5,4,4.3 };
+	double scores[10] = { 0 };
+	for (int i = 0; i < 10; i++) {
+		printf("%.2f ", grades[i]);
+	}
+
+	convert(grades, scores, 10);
+	printf("\n");
+
+	for (int i = 0; i < 10; i++) {
+		printf("%.2f ", scores[i]);
+	}
+
+	return 0;
+}
+
+void convert(double* grades, double* scores, int size)
+{
+	for (int i = 0; i < size; i++) {
+		scores[i] = grades[i] / 4.3 * 100;
+	}
+}
+
+ㄴ> 아무래도 전 포인터 개념을 좀 더 공부해야 할 필요가 있는거같네요... 흑
+
+--------
+3번 문제
+--------
+#include <stdio.h>
+
+void get_lcm_gcd(int x, int y, int* p_lcm, int* p_gcd);
+int main(void)
+{
+	int x = 0, y = 0;
+	printf("두 개의 정수를 입력하시오 : ");
+	scanf("%d %d", &x, &y);
+	int lcm = 0, gcd = 0;
+	get_lcm_gcd(x, y, &lcm, &gcd);
+	printf("최소공배수는 %d입니다.\n", lcm);
+	printf("최대공약수는 %d입니다.\n", gcd);
+
+	return 0;
+}
+
+
+void get_lcm_gcd(int x, int y, int* p_lcm, int* p_gcd)
+{
+	int x1 = x, y1 = y, temp = 0;
+	while (y1 != 0) {
+		temp = y1;
+		y1 = x1 % y1;
+		x1 = temp;
+	}
+	*p_gcd = x1;
+	*p_lcm = x*y/x1;
+}
+
+ㄴ> 이전에 파이썬으로 공배수 공약수 구한 문제를 푼 적이 있어서 (다들 있으시겠지만...)
+그때의 사용했던 방법을 통해 c언어로 짜보았습니다!
+
+--------
+4번 문제
+--------
+#include <stdio.h>
+#include <stdlib.h> 
+#include <time.h>
+
+void get_dice_face(int* amount1, int* amount2, int* amount3, int* amount4, int* amount5, int* amount6);
+
+int main(void)
+{
+	int amount1 = 0, amount2 = 0, amount3 = 0, amount4 = 0, amount5 = 0, amount6 = 0;
+	
+	srand(time(0));
+
+	for (int i = 0; i < 100; i++) {
+		get_dice_face(&amount1, &amount2, &amount3, &amount4, &amount5, &amount6);
+	}
+
+	printf("1 -> %d\n", amount1);
+	printf("2 -> %d\n", amount2);
+	printf("3 -> %d\n", amount3);
+	printf("4 -> %d\n", amount4);
+	printf("5 -> %d\n", amount5);
+	printf("6 -> %d\n", amount6);
+
+	return 0;
+}
+
+
+void get_dice_face(int* amount1, int* amount2, int* amount3, int* amount4, int* amount5, int* amount6)
+{
+	int num = (rand() % 6) + 1;
+	if (num % 2 == 0) {
+		if (num == 2) { (*amount2)++; }
+		else if (num == 4) { (*amount4)++; }
+		else { (*amount6)++; }
+	}
+	else {
+		if (num == 1) { (*amount1)++; }
+		else if (num == 3) { (*amount3)++; }
+		else { (*amount5)++; }
+	}
+}
+
+ㄴ> 한번 짝수를 기준으로 반으로 나눠서 값을 확인하는 코드로 짜봤습니다!

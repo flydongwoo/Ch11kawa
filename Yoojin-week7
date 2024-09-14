@@ -1,0 +1,299 @@
+// programmers prob1
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void) {
+	int a;
+	int b;
+	scanf("%d %d", &a, &b);
+	printf("%d + %d = %d\n", a, b, a + b);
+	return 0;
+}
+
+//-----------------------------------------------
+// programmers peob2
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define LEN_INPUT1 11
+#define LEN_INPUT2 11
+
+int main(void) {
+	char s1[LEN_INPUT1];
+	char s2[LEN_INPUT2];
+	scanf("%s %s", s1, s2);
+
+	printf("%s%s", s1, s2);
+	return 0;
+}
+
+//-----------------------------------------------
+// programmers prob3
+
+#define _CRT_SECURE_NO_WARNINGS
+#define LEN_INPUT 11
+#include <stdio.h>
+#include <string.h>
+
+void printAry(char* str, int size);
+
+int main(void) {
+	char s1[LEN_INPUT];
+	scanf("%s", s1);
+	int size = strlen(s1);
+
+	printAry(s1, size);
+
+	return 0;
+}
+
+void printAry(char* str, int size) {
+	for (int i = 0; i < size; i++)
+		printf("%c\n", str[i]);
+}
+
+//----------------------------------------------
+// programmers prob4
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void) {
+	int a;
+	scanf("%d", &a);
+
+	if (a % 2 == 0)
+		printf("%d is even\n", a);
+	else printf("%d is odd\n", a);
+	return 0;
+}
+
+//----------------------------------------------
+// programmers prob5
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// a와 b를 문자열로 바꾸기
+// 문자열 index 차례로 비교하기
+// 가장 먼저 큰 수가 나오면, 해당 수를 앞에 해서 문자열 붙이기
+
+int solution(int a, int b) {
+    char A[6], B[6];
+    char result[12];
+
+    sprintf(A, "%d", a);
+    sprintf(B, "%d", b);
+
+    int i = 0;
+    while (i < 5) {
+        if (A[i] > B[i]) {
+            strcpy(result, "A");
+            break;
+        }
+        else if (B[i] > A[i]) {
+            strcpy(result, "B");
+            break;
+        }
+        else {
+            i++;
+            strcpy(result, "A");
+        }
+    }
+    // -> 9 91을 입력했을 때 919가 출력되는 문제가 해결이 안되어서 찾아봤더니,
+
+    // int compare = strcmp(strcat(strdup(A), B), strcat(strdup(B), A));
+    // 이 방식.......으로 하면 해결되던데 ........ 넘 어렵네요
+
+    if (strcmp(result, "A") == 0)
+        strcpy(result, strcat(A, B));
+    else if (strcmp(result, "B") == 0)
+        strcpy(result, strcat(B, A));
+
+
+    int answer = atoi(result);
+    return answer;
+}
+
+
+int main(void) {
+    int a = 0, b = 0;
+    scanf("%d %d", &a, &b);
+
+    printf("%d\n", solution(a, b));
+
+    return 0;
+}
+
+//------------------------------------------------------------------------
+//-----------------------------------------------------------------------
+
+// C언어 express prob1
+
+// 2개의 정수의 합과 차를 동시에 반환하는 함수를 작성하고 테스트
+// 포인터 매개 변수 사용
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void get_sum_diff(int x, int y, int* p_sum, int* p_diff);
+
+int main(void) {
+	int x, y, sum, diff;
+
+	scanf("%d %d", &x, &y);
+	get_sum_diff(x, y, &sum, &diff);
+
+	printf("sum = %d\n", sum);
+	printf("diff = %d\n", diff);
+	return 0;
+}
+void get_sum_diff(int x, int y, int* p_sum, int* p_diff) {
+	*p_sum = x + y;
+	*p_diff = x - y;
+}
+
+//-----------------------------------------------------------------
+
+// C언어 express prob2
+
+// 학생들의 평점은 4.3점이 만점
+// 배열 grades[]에 학생 10명의 학점이 저장되어 있음
+// 이것을 100점으로 변환하여 배열 scores[]에 저장하는 함수를 작성
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void convert(double* grades, double* scores, int size);
+
+int main(void) {
+	double grades[10] = { 00.00,00.50,01.00,01.50,02.00,02.50,03.00,03.50,04.00,04.30 };
+	double scores[10] = { 0 };
+	int size = 10;
+
+	convert(grades, scores, size);
+	
+	for (int i = 0; i < size; i++) {
+		printf("%.2f ", scores[i]);
+	}
+	return 0;
+}
+
+void convert(double* grades, double* scores, int size) {
+	for (int i = 0; i < size; i++) {
+		scores[i] = grades[i] / 4.3 * 100;
+	}
+}
+
+//----------------------------------------------------------------------------------------------
+
+// C언어 express prob3
+
+// 2개의 정수 입력
+// 최대 공약수 & 최소 공배수를 반환하는 함수
+// 최대 공약수 : 유클리드 방법 사용
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void get_lcm_gcd(int x, int y, int* p_lcm, int* p_gcd);
+
+int main(void) {
+	int x, y, lcm, gcd;
+
+	scanf("%d %d", &x, &y);
+	
+	get_lcm_gcd(x, y, &lcm, &gcd);
+	printf("lcm : %d\n", lcm);
+	printf("gcd: %d\n", gcd);
+
+	return 0;
+}
+
+void get_lcm_gcd(int x, int y, int* p_lcm, int* p_gcd) {
+	int numL, numS, temp;
+	
+	if (x > y) {
+		numL = x; numS = y;
+	} else {
+		numL = y; numS = x;
+	}
+
+	while (1) {
+		if (numL % numS == 0) break;
+		temp = numL;
+		numL = numS;
+		numS = temp % numS;
+	}
+
+	*p_gcd = numS;
+	*p_lcm = (x * y) / *p_gcd;
+}
+
+
+//---------------------------------------------------------------
+
+// C언어 express prob4
+
+// 주사위 : 각 면이 나온 횟수 출력하는 프로그램
+// 난수를 이용하여 주사위 면 생성
+// 주사위를 던지는 함수 get_dice_face()
+// 함수 안에서 각 면이 나올 때마다 그 횟수를 정적 지역 변수를 이용하여 기억
+// get_dice_face() 호출 횟수가 100이되면 각 면의 횟수를 출력
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+void get_dice_face();
+
+int main(void) {
+	for (int i = 0; i < 100; i++) {
+		get_dice_face();
+	}
+	return 0;
+}
+
+void get_dice_face() {
+	static int dice_1;
+	static int dice_2;
+	static int dice_3;
+	static int dice_4;
+	static int dice_5;
+	static int dice_6;
+	static int count;
+
+	int dice_face = rand() % 6;
+
+	switch (dice_face) {
+	case 0:
+		dice_1++; count++;
+		break;
+	case 1:
+		dice_2++; count++;
+		break;
+	case 2:
+		dice_3++; count++;
+		break;
+	case 3:
+		dice_4++; count++;
+		break;
+	case 4:
+		dice_5++; count++;
+		break;
+	case 5:
+		dice_6++; count++;
+		break;
+	}
+	if (count == 100) {
+		printf("1->%d\n", dice_1);
+		printf("2->%d\n", dice_2);
+		printf("3->%d\n", dice_3);
+		printf("4->%d\n", dice_4);
+		printf("5->%d\n", dice_5);
+		printf("6->%d\n", dice_6);
+	}
+}
