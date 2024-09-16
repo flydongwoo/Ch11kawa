@@ -1,4 +1,63 @@
-// 가장 큰 금민수
+// 백준 1526 가장 큰 금민수
+
+// 은민이는 4와 7을 좋아하고, 나머지 숫자는 싫어한다.
+// 금민수는 어떤 수가 4와 7로만 이루어진 수를 말한다.
+// N이 주어졌을 때, N보다 작거나 같은 금민수 중 가장 큰 것을 출력하는 프로그램
+
+// 100 -> 77
+// 75 -> 74
+// 5 -> 4
+// 474747 -> 474747
+
+// 문제에서 알려준 예제는 다 정상적으로 결과가 출력되는데,
+// 어떤 부분이 문제인지 실패라고 뜨네요... 찾아주세요ㅜㅜ
+
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <math.h>
+
+int main(void) {
+    int N = 0, lenN = 0, testNum = 0, firstNum = 0, goldNum = 0, lastNum = 0;
+
+    scanf("N = %d", &N);
+
+    int tempN = N;
+    while (tempN != 0) {
+        lenN++;
+        tempN /= 10;
+    }
+    lenN--;
+
+    // 가장 앞자리의 숫자
+    firstNum = N / pow(10, lenN);
+    if (firstNum >= 7) {
+        goldNum += 7 * pow(10, lenN);
+    }
+    else if (firstNum >= 4) {
+        goldNum += 4 * pow(10, lenN);
+    }
+
+    // 나머지 뒷부분 숫자
+    for (int i = lenN - 1; i >= 0; i--) {
+        testNum = pow(10, i);
+        lastNum = (N / testNum) % 10;
+        if (lastNum >= 7 || lastNum < 4) {
+            goldNum += 7 * pow(10, i);
+        }
+        else if (lastNum >= 4 && lastNum < 7) {
+            goldNum += 4 * pow(10, i);
+        }
+    }
+
+    printf("goldNum = %d\n", goldNum);
+    return 0;
+}
+
+
+//------------------------------------------------------------
+
 // DNA 해독
 // 도비의 난독증 테스트
 // 유진수
