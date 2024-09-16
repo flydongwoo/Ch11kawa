@@ -21,7 +21,7 @@
 int main(void) {
     int N = 0, lenN = 0, testNum = 0, firstNum = 0, goldNum = 0, lastNum = 0;
 
-    scanf("N = %d", &N);
+    scanf("%d", &N);
 
     int tempN = N;
     while (tempN != 0) {
