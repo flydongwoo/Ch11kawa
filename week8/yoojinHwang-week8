@@ -124,7 +124,55 @@ int main(void) {
 
 
 //---------------------------------------------------------------------------------------------------------------
-// 도비의 난독증 테스트
+// 백준 도비의 난독증 테스트
+
+// 영어 단어 (대소문자 섞임)
+// 사전순으로 어느 단어가 가장 앞서는지 맞추기
+
+// 입력
+// 정수 n : 주어지는 단어의 개수
+// 각 줄에는 길이가 최대 20인 단어가 주어짐
+// 대소문자 구분을 없앴을 때 똑같은 단어는 주어지지 않음
+// 마지막 입력은 0
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(void) {
+	int n = 0;
+	char* words;
+	char* forDobby;
+
+	scanf("%d", &n);
+	words = (char*)malloc(sizeof(char) * n);
+	forDobby = (char*)malloc(sizeof(char) * n);
+	
+	int k = -1;
+	do {
+		k++;
+		scanf("%s", words[k]);
+		words[k] = tolower(words[k]);
+	} while (words[k] != '0');
+
+
+	for (int i = 0; i < n; i++) {
+		for (int j = i + 1; j <= n; j++) {
+			if (words[i] < words[j]) {
+				char temp = words[i];
+				words[i] = words[j];
+				words[j] = temp;
+			}
+		}
+	}
+
+	printf("%s\n", words[0]);
+	return 0;
+
+}
+// -------------------------------------------------------------------------------------------------------------
 // 유진수
 #define _CRT_SECURE_NO_WARNINGS
 
