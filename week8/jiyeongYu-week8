@@ -80,3 +80,45 @@ char transDNA(int num1, int num2)
 ----------------
 백준 3번째 문제
 ----------------
+#include <stdio.h>
+#include <ctype.h>	
+#include <string.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	int howLoop = 0;
+	scanf("%d", &howLoop);
+	if (howLoop == 0) {
+		return 0;
+	}
+	char* word1;
+	word1 = (char*)malloc(sizeof(char) * 1001);
+	scanf("%s", word1);
+
+	char* word2;
+	word2 = (char*)malloc(sizeof(char) * (1001));
+
+	for (int i = 1; i < howLoop; i++) {
+		scanf("%s", word2);
+		int minLen = strlen(word1) < strlen(word2) ? strlen(word1) : strlen(word2);
+
+		for (int a = 0; a < minLen; a++) {
+			if (tolower(word1[a]) > tolower(word2[a]))
+			{
+				strcpy(word1, word2);
+				break;
+			}
+			else if (tolower(word1[a]) < tolower(word2[a])) { break; }
+		}
+	}
+		printf("%s\n", word1);
+
+		free(word1);
+		free(word2);
+
+		return 0;
+	}
+
+---------
+짜긴했는데 앞부분이 동일하지만 길이가 더 긴 단어와 비교는.. 되지않습니다.... 수정필요...흑
