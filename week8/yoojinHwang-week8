@@ -195,40 +195,51 @@ int main(void) {
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 
 int main(void) {
-	int n = 0;
-	char* words;
-	char* forDobby;
+    int n = 0;
+    char words[1000][20] = { 0 };
+    char forDobby[1000][20] = { 0 };
+    char temp[20] = { 0 };
 
-	scanf("%d", &n);
-	words = (char*)malloc(sizeof(char) * n);
-	forDobby = (char*)malloc(sizeof(char) * n);
-	
-	int k = -1;
-	do {
-		k++;
-		scanf("%s", words[k]);
-		words[k] = tolower(words[k]);
-	} while (words[k] != '0');
+    int count = 0;
+    while (1) {
+        scanf("%d", &n);
+        if (n == 0) 
+            break;
 
+        for (int i = 0; i < n; i++) {
+            scanf("%s", words[i]);
+        }
 
-	for (int i = 0; i < n; i++) {
-		for (int j = i + 1; j <= n; j++) {
-			if (words[i] < words[j]) {
-				char temp = words[i];
-				words[i] = words[j];
-				words[j] = temp;
-			}
-		}
-	}
+        strcpy(forDobby[count], words[0]);
 
-	printf("%s\n", words[0]);
-	return 0;
+        for (int i = 1; i < n; i++) {
+            strcpy(temp, words[i]);
 
+            for (int j = 0; temp[j]; j++)
+                temp[j] = tolower(temp[j]);
+
+            char tempDobby[20];
+            strcpy(tempDobby, forDobby);
+
+            for (int j = 0; tempDobby[j]; j++)
+                tempDobby[j] = tolower(tempDobby[j]);
+
+            if (strcmp(temp, tempDobby) < 0)
+                strcpy(forDobby[count], words[i]);
+        }
+        count++;
+    }
+
+    for (int i = 0; i < count; i++)
+        printf("%s\n", forDobby[i]);
+
+    return 0;
 }
+
 // -------------------------------------------------------------------------------------------------------------
 // 유진수
 // 성공
