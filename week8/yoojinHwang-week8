@@ -59,6 +59,7 @@ int main(void) {
 //------------------------------------------------------------
 
 // 백준 1672 DNA 해독
+// 성공
 
 // N개의 A, G, t, C로 구성되어 있는 염기서열
 // 염기서열을 해독해야함 (표를 이용)
@@ -75,10 +76,6 @@ int main(void) {
 // 입력으로 염기서열 길이 N, 염기서열 문자열
 // 최종 염기를 출력
 
-
-// 백준 예시 입출력은 실행이 되는데, 누가봐도 말도 안되는 알고리즘이라 그런지 실패가 뜨더라구요 ㅎㅎ
-// 그래도 풀긴 풀엇슴
-
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
@@ -88,32 +85,92 @@ int main(void) {
 	int N = 0;
 	char* Quest;
 	scanf("%d", &N);
-	
+
 	Quest = (char*)malloc(sizeof(char) * N);
 	scanf("%s", Quest);
 
 	for (int i = N; i > 0; i--) {
-		if ((Quest[i] == 'A' && Quest[i - 1] == 'A') || (Quest[i] == 'A' && Quest[i - 1] == 'C') ||
-			(Quest[i] == 'G' && Quest[i - 1] == 'T') || (Quest[i] == 'C' && Quest[i - 1] == 'A') ||
-			(Quest[i] == 'T' && Quest[i - 1] == 'G')) {
-			Quest[i] = '\0';
-			Quest[i - 1] = 'A';
-		}
-		else if ((Quest[i] == 'A' && Quest[i - 1] == 'T') || (Quest[i] == 'G' && Quest[i - 1] == 'G') ||
-			(Quest[i] == 'C' && Quest[i - 1] == 'T') || (Quest[i] == 'T' && Quest[i - 1] == 'A') ||
-			(Quest[i] == 'T' && Quest[i - 1] == 'C')) {
-			Quest[i] = '\0';
-			Quest[i - 1] = 'G';
-		}
-		else if ((Quest[i] == 'A' && Quest[i - 1] == 'G') || (Quest[i] == 'G' && Quest[i - 1] == 'G') ||
-			(Quest[i] == 'C' && Quest[i - 1] == 'C')) {
-			Quest[i] = '\0';
-			Quest[i - 1] = 'C';
-		}
-		else if ((Quest[i] == 'G' && Quest[i - 1] == 'C') || (Quest[i] == 'C' && Quest[i - 1] == 'G') ||
-			(Quest[i] == 'T' && Quest[i - 1] == 'T')) {
-			Quest[i] = '\0';
-			Quest[i - 1] = 'T';
+		switch (Quest[i]) {
+		case 'A':
+			switch (Quest[i - 1]) {
+			case 'A':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'A';
+				break;
+			case 'G':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'C';
+				break;
+			case 'C':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'A';
+				break;
+			case 'T':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'G';
+				break;
+			}
+			break;
+		case 'G':
+			switch (Quest[i - 1]) {
+			case 'A':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'C';
+				break;
+			case 'G':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'G';
+				break;
+			case 'C':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'T';
+				break;
+			case 'T':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'A';
+				break;
+			}
+			break;
+		case 'C':
+			switch (Quest[i - 1]) {
+			case 'A':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'A';
+				break;
+			case 'G':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'T';
+				break;
+			case 'C':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'C';
+				break;
+			case 'T':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'G';
+				break;
+			}
+			break;
+		case 'T':
+			switch (Quest[i - 1]) {
+			case 'A':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'G';
+				break;
+			case 'G':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'A';
+				break;
+			case 'C':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'G';
+				break;
+			case 'T':
+				Quest[i] = '\0';
+				Quest[i - 1] = 'T';
+				break;
+			}
+			break;
 		}
 	}
 
