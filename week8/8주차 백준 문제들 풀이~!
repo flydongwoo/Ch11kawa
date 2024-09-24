@@ -1,0 +1,151 @@
+// 가장 큰 금민수
+
+#include <stdio.h>
+#include <string.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+int isfourorseven(char* numStr) {
+	int len = strlen(numStr);
+	for (int i = 0; i < len; i++) {
+		if (numStr[i] != '4' && numStr[i] != '7') {
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int main() {
+	int N;
+	char numStr[12];
+
+	scanf("%d", &N);
+
+	for (int i = N; i >= 4; i--) {
+		sprintf_s(numStr, "%d", i);
+		if (isfourorseven(numStr)) {
+			printf("%d\n", i);
+			break;
+		}
+	}
+
+	return 0;
+}
+
+----------------------------------------------------
+
+// DNA 해독
+
+#include <stdio.h>
+#include <string.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+char decode[4][4] = {
+	{'A', 'C', 'A', 'G'},
+	{'C', 'G', 'T', 'A'},
+	{'A', 'T', 'C', 'G'},
+	{'G', 'A', 'G', 'T'}
+};
+
+int getIndex(char base) {
+	switch (base) {
+		case 'A' :
+			return 0;
+		case 'G' :
+			return 1;
+		case 'C' :
+			return 2;
+		case 'T' :
+			return 3;
+		default :
+			return -1;
+	}
+}
+
+int main() {
+	int N;
+	char dna[1000001];
+
+	scanf_s("%d", &N);
+	scanf_s("%s", dna);
+
+	for (int i = N - 1; i > 0; i--) {
+		int row = getIndex(dna[i - 1]);
+		int col = getIndex(dna[i]);
+		dna[i - 1] = decode[row][col];
+	}
+
+	printf("%c\n", dna[0]);
+
+	return 0;
+}
+
+----------------------------------------------------
+
+// 도비의 난독증 테스트
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+	int n;
+
+	while (1) {
+
+		scanf("%d", &n);
+		if (n == 0) {
+			break;
+		}
+
+		char words[1000][21];
+		char smallest[21];
+
+		scanf("%s", words[0]);
+		strcpy(smallest, words[0]);
+
+		for (int i = 1; i < n; i++) {
+			scanf("%s", words[i]);
+
+
+			if (strcasecmp(words[i], smallest) < 0) {
+				strcpy(smallest, words[i]); 
+			}
+		}
+
+		printf("%s\n", smallest);
+	}
+}
+
+----------------------------------------------------
+
+// 유진수
+
+#include <stdio.h>
+#include <string.h>
+
+int yujinsoo(const char* str, int start, int end) {
+	int product = 1;
+	for (int i = start; i < end; i++) {
+		product *= str[i] - '0';
+	}
+	return product;
+}
+
+int main() {
+	char N[10];
+	scanf("%s", N);
+
+	int len = strlen(N);
+
+	for (int i = 1; i < len; i++) {
+		int front_product = yujinsoo(N, 0, i);
+		int back_product = yujinsoo(N, i, len);
+
+		if (front_product == back_product) {
+			printf("YES\n");
+			return 0;
+		}
+	}
+
+	printf("NO\n");
+	return 0;
+}
