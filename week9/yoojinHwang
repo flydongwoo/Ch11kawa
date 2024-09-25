@@ -1,1 +1,41 @@
+// 백준 영화감독 숌
+// 666은 종말을 나타내는 수
+// 제일 작은 종말의 수 = 666, 다음으로 1666, 2666, 3666, ...
 
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <ctype.h>
+
+int endNum(int n);
+
+int main(void) {
+	int N = 0;
+
+	scanf("%d", &N);
+
+	int result = endNum(N);
+	printf("%d", result);
+	return 0;
+}
+
+int endNum(int n) {
+	int num = 0;   // 카운트 숫자
+	int count = 0; // 몇 번째 종말의 수인지
+	int isSix = 0; // 6인지
+
+	while (1) {
+		if (count == n)
+			return num;
+		num++;
+		char test[20];
+		sprintf(test, "%d", num);
+
+		if (strstr(test, "666") != NULL)
+			count++;
+
+	}
+}
+
+// --------------------------------------------------------------------
