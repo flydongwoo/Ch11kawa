@@ -40,3 +40,45 @@ int endNum(int n) {
 }
 
 // --------------------------------------------------------------------
+
+// 실패
+// 뭐가 잘못된 건지 도저히 모르겠습니다..?
+
+// 백준 22938
+// 백발백준하는 명사수
+
+// 두 과녁이 겹치는 부분이 있어 한번에 맞추기가 가능한지 검사
+// 원 모양으로 생긴 두 과녁이 겹치는 부분이 존재하는지 확인
+
+// 첫 번째 과녁의 중심 X1, Y1, 반지름 R1
+// 두 번째 과녁의 중심 X2, Y2, 반지름 R2
+
+// 과녁이 겹치면 YES, 아니면 NO
+// 두 과녁이 한 점에서 만나는 경우는 겹치지 않는 것으로 간주
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <math.h>
+
+void robinhood(int X, int R1, int R2);
+
+int main(void) {
+	int X1, Y1, R1;
+	int X2, Y2, R2;
+
+	scanf("%d %d %d", &X1, &Y1, &R1);
+	scanf("%d %d %d", &X2, &Y2, &R2);
+
+	int X = pow((X1 - X2), 2) + pow((Y1 - Y2), 2);
+
+	robinhood(X, R1, R2);
+
+	return 0;
+}
+void robinhood(int X, int R1, int R2) {
+	if (X <= pow((R1 - R2), 2) || X >= pow((R1 + R2), 2))
+		printf("NO");
+	else
+		printf("YES");
+}
