@@ -35,3 +35,22 @@ int IsEndNum(int num) {
 	}
 	return 0;
 }
+--------------------
+백준 2번째 문제
+따로 함수로 만들진않았습니다!
+자꾸 오류가 나서 고쳐야했던 부분은 바로 두 점의 거리값을 double 자료형으로 받아야하는 부분이였습니다
+아무래도 루트값이다보니깐  int나 float(솔직히 float은 될줄알았는데 안돼서 당황했습니당..)을 쓰면 비교연산할때 예외들이 생겨서 double로 받아야했던....
+---------------------
+#include <stdio.h>
+#include <math.h>
+
+int main(void) {
+	int x1 = 0, x2 = 0, y1 = 0, y2 = 0, r1 = 0, r2 = 0;
+	scanf("%d%d%d", &x1, &y1, &r1);
+	scanf("%d%d%d", &x2, &y2, &r2);
+	double distance = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+	if (distance < r1 + r2) { printf("YES"); }
+	else { printf("NO"); }
+	
+	return 0;
+}
