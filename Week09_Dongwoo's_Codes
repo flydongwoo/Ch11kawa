@@ -1,0 +1,63 @@
+// 영화감독 숌
+
+#include <stdio.h>
+#include <string.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+int checkNum(int num) {
+	char str[20];
+	sprintf_s(str, sizeof(str), "%d", num);
+	// strstr은 문자열에서 서브스트링을 찾는 함수랍니다!
+	return strstr(str, "666") != NULL;
+}
+
+int main(void) {
+	int N;
+	printf("숌이 몇 번째 영화를 만들었나요? ");
+	scanf("%d", &N);
+
+	int count = 0;
+	int number = 666;
+
+	while (count < N) {
+		if (checkNum(number)) {
+			count++;
+		}
+		number++;
+	}
+
+	printf("%d\n", number - 1);
+
+	return 0;
+}
+
+// 컴파일러 실행은 되는데 stdio 헤더파일이 뜨면서 에러가 떠요! 이거 같이 해결해봐요~!
+
+
+---------------------------------------------------------------------------------------------------
+
+
+// 백발백준하는 명사수
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+	int x1, y1, r1, x2, y2, r2;
+	scanf_s("%d %d %d", &x1, &y1, &r1);
+	scanf_s("%d %d %d", &x2, &y2, &r2);
+
+	double distance = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+	
+	// fabs 함수는 절대값을 계산해주는 함수입니닷!
+	if (distance < r1 + r2 && distance > fabs(r1 - r2)) {
+		printf("YES\n");
+	}
+	else {
+		printf("NO\n");
+	}
+
+	return 0;
+}
+
+// 이 코드는 정상적으로 실행가능합니다~!
