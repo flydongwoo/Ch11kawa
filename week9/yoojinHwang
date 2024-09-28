@@ -82,3 +82,68 @@ void robinhood(int X, int R1, int R2) {
 	else
 		printf("YES");
 }
+
+
+//------------------------------------------------------------
+
+// 이거 어떻게 푸는 거죠.....? 뭔가 A와 B 배열을 똑같은 크기로 정의하라고 하는데,,,, 
+일단 뭔가 마땅한 방법을 찾지 못하고,, 
+배열 크기를 제 마음대로 지정해서 동작하는 코드로 짜긴 했습니다......
+// C언어 express 11
+
+// 2개의 정렬된 정수 배열 A[], B[]
+// 2개의 배열을 합쳐서 하나의 정렬된 배열 C[]로 만드는 함수 작성
+
+// 배열 A[]와 B[]는 똑같은 크기로 정의되어 있음
+// 배열 C[]에는 충분한 공간이 확보되어 있음
+
+// A[0] B[0] 비교 -> A[0]이 작으면 C[0]에 복사
+// A[1] B[0] 비교 ...
+// A[]나 B[] 중 어느 하나가 먼저 끝나게 되면, 남아있는 요소들을 전부 C[]로 이동
+
+#define _CRT_SECURE_NO_WARNINGS
+#define SIZE 5
+#include <stdio.h>
+
+void merge(int* A, int* B, int* C, int size);
+
+int main(void) {
+	char X[100];
+	int A[SIZE] = { 0 };
+	int B[SIZE] = { 0 };
+	int C[20] = { 0 };
+
+	printf("A[] = ");
+	gets(X);
+
+	for (int i = 0; i < SIZE; i++) {
+		scanf("%d ", &A[i]);
+		if (A[i - 1] == 0) break;
+	}
+	printf("B[] = ");
+	for (int i = 0; i < SIZE; i++) {
+		scanf("%d ", &B[i]);
+		if (B[i - 1] == 0) break;
+	}
+	merge(A, B, C, SIZE);
+
+	return 0;
+}
+void merge(int* A, int* B, int* C, int size) {
+	int i = 0, j = 0, k = 0;
+	while (i <= size || j <= size) {
+		if (A[i] <= B[j]) {
+			C[k] = A[i];
+			i++; k++;
+		}
+		else {
+			C[k] = B[i];
+			j++; k++;
+		}
+	}
+	printf("C[] =");
+	while (k >= 0) {
+		printf(" %d", C[k]);
+	}
+	printf("\n");
+}
