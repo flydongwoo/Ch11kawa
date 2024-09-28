@@ -86,9 +86,7 @@ void robinhood(int X, int R1, int R2) {
 
 //------------------------------------------------------------
 
-// 이거 어떻게 푸는 거죠.....? 뭔가 A와 B 배열을 똑같은 크기로 정의하라고 하는데,,,, 
-일단 뭔가 마땅한 방법을 찾지 못하고,, 
-배열 크기를 제 마음대로 지정해서 동작하는 코드로 짜긴 했습니다......
+// 성공
 // C언어 express 11
 
 // 2개의 정렬된 정수 배열 A[], B[]
@@ -101,49 +99,69 @@ void robinhood(int X, int R1, int R2) {
 // A[1] B[0] 비교 ...
 // A[]나 B[] 중 어느 하나가 먼저 끝나게 되면, 남아있는 요소들을 전부 C[]로 이동
 
+
 #define _CRT_SECURE_NO_WARNINGS
-#define SIZE 5
+#define SIZE 20
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void merge(int* A, int* B, int* C, int size);
 
-int main(void) {
-	char X[100];
-	int A[SIZE] = { 0 };
-	int B[SIZE] = { 0 };
-	int C[20] = { 0 };
+int main(void) 
+{
+	char wordA[SIZE] = { 0 };
+	char wordB[SIZE] = { 0 };
+	int intA[SIZE] = { 0 };
+	int intB[SIZE] = { 0 };
+	int intC[SIZE * 2] = { 0 };
 
 	printf("A[] = ");
-	gets(X);
-
-	for (int i = 0; i < SIZE; i++) {
-		scanf("%d ", &A[i]);
-		if (A[i - 1] == 0) break;
-	}
+	fgets(wordA, sizeof(wordA), stdin);
 	printf("B[] = ");
-	for (int i = 0; i < SIZE; i++) {
-		scanf("%d ", &B[i]);
-		if (B[i - 1] == 0) break;
+	fgets(wordB, sizeof(wordB), stdin);
+
+
+	int i = 0;
+	char* Anum = strtok(wordA, " ");
+	while (Anum != NULL) {
+		intA[i++] = atoi(Anum);
+		Anum = strtok(NULL, " ");
 	}
-	merge(A, B, C, SIZE);
+
+	i = 0;
+	char* Bnum = strtok(wordB, " ");
+	while (Bnum != NULL) {
+		intB[i++] = atoi(Bnum);
+		Bnum = strtok(NULL, " ");
+	}
+
+	merge(intA, intB, intC, i);
 
 	return 0;
 }
-void merge(int* A, int* B, int* C, int size) {
+
+void merge(int* A, int* B, int* C, int size) 
+{
 	int i = 0, j = 0, k = 0;
-	while (i <= size || j <= size) {
-		if (A[i] <= B[j]) {
-			C[k] = A[i];
-			i++; k++;
-		}
-		else {
-			C[k] = B[i];
-			j++; k++;
-		}
+	while (i < size && j < size) {
+		if (A[i] <= B[j])
+			C[k++] = A[i++];
+		else
+			C[k++] = B[j++];
 	}
+
+	while (i < size) {
+		C[k++] = A[i++];
+	}
+	while (j < size) {
+		C[k++] = B[j++];
+	}
+
 	printf("C[] =");
-	while (k >= 0) {
-		printf(" %d", C[k]);
+	for (int m = 0; m < k; m++) {
+		printf(" %d", C[m]);
 	}
 	printf("\n");
 }
