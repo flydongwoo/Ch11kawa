@@ -165,3 +165,64 @@ void merge(int* A, int* B, int* C, int size)
 	}
 	printf("\n");
 }
+
+
+//-----------------------------------------------------
+
+// 성공
+// C언어 express 9
+
+// 학생들의 시험 점수를 통계 처리하는 프로그램
+// 한 학급은 최대 10명
+// 각 학생들은 3번의 시험을 치름
+// 학생들의 성적 : 난수 생성
+
+// 각 시험에 대하여 최대점수, 최저점수를 계산해 출력
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#define COL 10
+#define ROW 3
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void getEXAM(int (*EXAM)[COL], int rows);
+void getMaxMin(int(*EXAM)[COL], int rows);
+
+int main(void) 
+{
+	int EXAM[ROW][COL] = { 0 };
+
+	getEXAM(EXAM, ROW);
+	getMaxMin(EXAM, ROW);
+
+	return 0;
+}
+
+void getEXAM(int(*EXAM)[COL], int rows)
+{
+	srand((unsigned int)time(NULL));
+
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < COL; j++) {
+			EXAM[i][j] = rand() % 100 + 1;
+		}
+	}
+}
+
+void getMaxMin(int(*EXAM)[COL], int rows) 
+{
+	for (int i = 0; i < rows; i++) {
+		int min = 101, max = 0;
+		for (int j = 0; j < COL; j++) {
+			if (EXAM[i][j] < min)
+				min = EXAM[i][j];
+			if (EXAM[i][j] > max)
+				max = EXAM[i][j];
+		}
+		printf("시험 #%d의 최대 점수=%d\n", i + 1, max);
+		printf("시험 #%d의 최저 점수=%d\n", i + 1, min);
+	}
+}
