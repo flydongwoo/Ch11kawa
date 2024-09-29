@@ -55,3 +55,28 @@ int main(void) {
 
 	return 0;
 }
+-----------------
+Cexpress 1번 문제
+-----------------
+
+-----------------
+Cexpress 2번 문
+-----------------
+
+-----------------
+Cexpress 3번 문제 
+-----------------
+#include <stdio.h> 
+void get_int(int* x, int* y);
+int main(void)
+{
+	int x1 = 0, x2 = 0;
+	printf("2개의 정수를 입력하세요 : ");
+	get_int(&x1, &x2);
+	printf("정수의 합은 %d", x1 + x2);
+
+	return 0;
+}
+void get_int(int* x, int* y) {
+	scanf("%d%d", x, y);
+}
