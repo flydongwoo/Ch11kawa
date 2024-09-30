@@ -1,1 +1,266 @@
+// 성공
+// 백준 영화감독 숌
+// 666은 종말을 나타내는 수
+// 제일 작은 종말의 수 = 666, 다음으로 1666, 2666, 3666, ...
 
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <ctype.h>
+
+int endNum(int n);
+
+int main(void) {
+	int N = 0;
+
+	scanf("%d", &N);
+
+	int result = endNum(N);
+	printf("%d", result);
+	return 0;
+}
+
+int endNum(int n) {
+	int num = 0;   // 카운트 숫자
+	int count = 0; // 몇 번째 종말의 수인지
+	int isSix = 0; // 6인지
+
+	while (1) {
+		if (count == n)
+			return num;
+		num++;
+		char test[20];
+		sprintf(test, "%d", num);
+
+		if (strstr(test, "666") != NULL)
+			count++;
+
+	}
+}
+
+// --------------------------------------------------------------------
+
+// 실패
+// 뭐가 잘못된 건지 도저히 모르겠습니다..?
+
+// 백준 22938
+// 백발백준하는 명사수
+
+// 두 과녁이 겹치는 부분이 있어 한번에 맞추기가 가능한지 검사
+// 원 모양으로 생긴 두 과녁이 겹치는 부분이 존재하는지 확인
+
+// 첫 번째 과녁의 중심 X1, Y1, 반지름 R1
+// 두 번째 과녁의 중심 X2, Y2, 반지름 R2
+
+// 과녁이 겹치면 YES, 아니면 NO
+// 두 과녁이 한 점에서 만나는 경우는 겹치지 않는 것으로 간주
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <math.h>
+
+void robinhood(int X, int R1, int R2);
+
+int main(void) {
+	int X1, Y1, R1;
+	int X2, Y2, R2;
+
+	scanf("%d %d %d", &X1, &Y1, &R1);
+	scanf("%d %d %d", &X2, &Y2, &R2);
+
+	int X = pow((X1 - X2), 2) + pow((Y1 - Y2), 2);
+
+	robinhood(X, R1, R2);
+
+	return 0;
+}
+void robinhood(int X, int R1, int R2) {
+	if (X <= pow((R1 - R2), 2) || X >= pow((R1 + R2), 2))
+		printf("NO");
+	else
+		printf("YES");
+}
+
+
+//------------------------------------------------------------
+
+// 성공
+// C언어 express 11
+
+// 2개의 정렬된 정수 배열 A[], B[]
+// 2개의 배열을 합쳐서 하나의 정렬된 배열 C[]로 만드는 함수 작성
+
+// 배열 A[]와 B[]는 똑같은 크기로 정의되어 있음
+// 배열 C[]에는 충분한 공간이 확보되어 있음
+
+// A[0] B[0] 비교 -> A[0]이 작으면 C[0]에 복사
+// A[1] B[0] 비교 ...
+// A[]나 B[] 중 어느 하나가 먼저 끝나게 되면, 남아있는 요소들을 전부 C[]로 이동
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#define SIZE 20
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void merge(int* A, int* B, int* C, int size);
+
+int main(void) 
+{
+	char wordA[SIZE] = { 0 };
+	char wordB[SIZE] = { 0 };
+	int intA[SIZE] = { 0 };
+	int intB[SIZE] = { 0 };
+	int intC[SIZE * 2] = { 0 };
+
+	printf("A[] = ");
+	fgets(wordA, sizeof(wordA), stdin);
+	printf("B[] = ");
+	fgets(wordB, sizeof(wordB), stdin);
+
+
+	int i = 0;
+	char* Anum = strtok(wordA, " ");
+	while (Anum != NULL) {
+		intA[i++] = atoi(Anum);
+		Anum = strtok(NULL, " ");
+	}
+
+	i = 0;
+	char* Bnum = strtok(wordB, " ");
+	while (Bnum != NULL) {
+		intB[i++] = atoi(Bnum);
+		Bnum = strtok(NULL, " ");
+	}
+
+	merge(intA, intB, intC, i);
+
+	return 0;
+}
+
+void merge(int* A, int* B, int* C, int size) 
+{
+	int i = 0, j = 0, k = 0;
+	while (i < size && j < size) {
+		if (A[i] <= B[j])
+			C[k++] = A[i++];
+		else
+			C[k++] = B[j++];
+	}
+
+	while (i < size) {
+		C[k++] = A[i++];
+	}
+	while (j < size) {
+		C[k++] = B[j++];
+	}
+
+	printf("C[] =");
+	for (int m = 0; m < k; m++) {
+		printf(" %d", C[m]);
+	}
+	printf("\n");
+}
+
+
+//-----------------------------------------------------
+
+// 성공
+// C언어 express 9
+
+// 학생들의 시험 점수를 통계 처리하는 프로그램
+// 한 학급은 최대 10명
+// 각 학생들은 3번의 시험을 치름
+// 학생들의 성적 : 난수 생성
+
+// 각 시험에 대하여 최대점수, 최저점수를 계산해 출력
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#define COL 10
+#define ROW 3
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void getEXAM(int (*EXAM)[COL], int rows);
+void getMaxMin(int(*EXAM)[COL], int rows);
+
+int main(void) 
+{
+	int EXAM[ROW][COL] = { 0 };
+
+	getEXAM(EXAM, ROW);
+	getMaxMin(EXAM, ROW);
+
+	return 0;
+}
+
+void getEXAM(int(*EXAM)[COL], int rows)
+{
+	srand((unsigned int)time(NULL));
+
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < COL; j++) {
+			EXAM[i][j] = rand() % 100 + 1;
+		}
+	}
+}
+
+void getMaxMin(int(*EXAM)[COL], int rows) 
+{
+	for (int i = 0; i < rows; i++) {
+		int min = 101, max = 0;
+		for (int j = 0; j < COL; j++) {
+			if (EXAM[i][j] < min)
+				min = EXAM[i][j];
+			if (EXAM[i][j] > max)
+				max = EXAM[i][j];
+		}
+		printf("시험 #%d의 최대 점수=%d\n", i + 1, max);
+		printf("시험 #%d의 최저 점수=%d\n", i + 1, min);
+	}
+}
+
+
+//--------------------------------------------------------------
+
+// 성공
+// C언어 express prob 12
+
+// 사용자로부터 2개의 정수를 받아오는 함수 구현
+// (기존 함수는 하나의 값만 반환 가능)
+// 2개 이상의 값을 반환하기 위한 방법을 찾아라 -> 포인터 응용
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+
+void get_int(int* px, int* py);
+void get_sum(int x, int y);
+
+int main(void) 
+{
+	int* x = 0, y = 0;
+
+	get_int(&x, &y);
+	get_sum(x, y);
+
+	return 0;
+}
+
+void get_int(int* px, int* py)
+{
+	printf("x, y : ");
+	scanf("%d %d", px, py);
+}
+
+void get_sum(int x, int y) {
+	int sum = x + y;
+	printf("sum = %d\n", sum);
+}
