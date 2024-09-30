@@ -1,0 +1,221 @@
+// 영화감독 숌
+
+#include <stdio.h>
+#include <string.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+int checkNum(int num) {
+	char str[20];
+	sprintf_s(str, sizeof(str), "%d", num);
+	// strstr은 문자열에서 서브스트링을 찾는 함수랍니다!
+	return strstr(str, "666") != NULL;
+}
+
+int main(void) {
+	int N;
+	printf("숌이 몇 번째 영화를 만들었나요? ");
+	scanf("%d", &N);
+
+	int count = 0;
+	int number = 666;
+
+	while (count < N) {
+		if (checkNum(number)) {
+			count++;
+		}
+		number++;
+	}
+
+	printf("%d\n", number - 1);
+
+	return 0;
+}
+
+// 컴파일러 실행은 되는데 stdio 헤더파일이 뜨면서 에러가 떠요! 이거 같이 해결해봐요~!
+
+
+---------------------------------------------------------------------------------------------------
+
+
+// 백발백준하는 명사수
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+	int x1, y1, r1, x2, y2, r2;
+	scanf_s("%d %d %d", &x1, &y1, &r1);
+	scanf_s("%d %d %d", &x2, &y2, &r2);
+
+	double distance = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+
+	// fabs 함수는 절대값을 계산해주는 함수입니닷!
+	if (distance < r1 + r2 && distance > fabs(r1 - r2)) {
+		printf("YES\n");
+	}
+	else {
+		printf("NO\n");
+	}
+
+	return 0;
+}
+
+// 이 코드는 정상적으로 실행가능합니다~!
+
+
+---------------------------------------------------------------------------------------------------
+
+
+// C_express_prob01
+
+#include <stdio.h>
+
+void merge(int* A, int* B, int* C, int size) {
+	int i = 0, j = 0, k = 0;
+
+	while (i < size && j < size) {
+		if (A[i] < B[j]) {
+			C[k++] = A[i++];
+		}
+		else {
+			C[k++] = B[j++];
+		}
+	}
+
+	while (i < size) {
+		C[k++] = A[i++];
+	}
+
+	while (j < size) {
+		C[k++] = B[j++];
+	}
+}
+
+int main() {
+	int sizeA = 0;
+	int sizeB = 0;
+	int A[100], B[100], C[200];
+
+	printf("A 배열 (종료는 -1): ");
+	for (int i = 0; ; i++) {
+		int temp;
+		scanf_s("%d", &temp);
+		if (temp == -1) {
+			break;
+		}
+		A[i] = temp;
+		sizeA++;
+	}
+
+	printf("B 배열 (종료는 -1): ");
+	for (int i = 0; i < sizeA; i++) {
+		scanf_s("%d", &B[i]);
+		sizeB++;  
+	}
+
+	if (sizeA != sizeB) {
+		printf("A 배열과 B 배열의 크기가 다릅니다.\n");
+		return 1;
+	}
+
+	merge(A, B, C, sizeA);
+
+	printf("C[] = ");
+	for (int i = 0; i < 2 * sizeA; i++) {
+		printf("%d ", C[i]);
+	}
+	printf("\n");
+
+	return 0;
+
+}
+
+// 이 코드는 정상적으로 실행가능합니다~!
+
+
+---------------------------------------------------------------------------------------------------
+
+
+// C_express_prob02
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define STUDENTS 5
+#define EXAMS 3
+
+int findMax(int scores[], int size) {
+    int max = scores[0];
+    for (int i = 1; i < size; i++) {
+        if (scores[i] > max) {
+            max = scores[i];
+        }
+    }
+    return max;
+}
+
+int findMin(int scores[], int size) {
+    int min = scores[0];
+    for (int i = 1; i < size; i++) {
+        if (scores[i] < min) {
+            min = scores[i];
+        }
+    }
+    return min;
+}
+
+int main() {
+    int scores[STUDENTS][EXAMS];   
+    srand(time(0));      
+
+    for (int i = 0; i < STUDENTS; i++) {
+        for (int j = 0; j < EXAMS; j++) {
+            scores[i][j] = rand() % 101;  
+        }
+    }
+
+    for (int exam = 0; exam < EXAMS; exam++) {
+        int examScores[STUDENTS];
+
+        for (int i = 0; i < STUDENTS; i++) {
+            examScores[i] = scores[i][exam];
+        }
+
+        int maxScore = findMax(examScores, STUDENTS);
+        int minScore = findMin(examScores, STUDENTS);
+
+        printf("시험 #%d의 최대 점수: %d\n", exam + 1, maxScore);
+        printf("시험 #%d의 최저 점수: %d\n", exam + 1, minScore);
+    }
+
+    return 0;
+}
+
+// 이 코드는 정상적으로 실행가능합니다~!
+
+
+---------------------------------------------------------------------------------------------------
+
+
+// C_express_prob03
+
+#include <stdio.h>
+
+void get_int(int* px, int* py) {
+    printf("2개의 정수를 입력하세요 (예: 10 20): ");
+    scanf_s("%d %d", px, py);
+}
+
+int main() {
+    int x, y;
+
+    get_int(&x, &y);
+
+    int sum = x + y;
+    printf("정수의 합은 %d\n", sum);
+
+    return 0;
+}
+
+// 이 코드는 정상적으로 실행가능합니다~!
